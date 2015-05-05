@@ -1,0 +1,50 @@
+object MainForm: TMainForm
+  Left = 359
+  Height = 351
+  Top = 286
+  Width = 599
+  Caption = 'DBShed'
+  Menu = MainMenu
+  LCLVersion = '1.2.6.0'
+  object MainMenu: TMainMenu
+    object ReferenceItem: TMenuItem
+      Caption = 'Справочник'
+      OnClick = ReferenceItemClick
+      object Classrooms: TMenuItem
+        Caption = 'Аудитории'
+      end
+      object Courses: TMenuItem
+        Tag = 1
+        Caption = 'Courses'
+      end
+      object Groups: TMenuItem
+        Tag = 2
+        Caption = 'Группы'
+      end
+      object GroupsCourses: TMenuItem
+        Tag = 3
+        Caption = 'Группы и courses'
+      end
+      object Lessons: TMenuItem
+        Tag = 4
+        Caption = 'Lessons'
+      end
+      object Pairs: TMenuItem
+        Tag = 5
+        Caption = 'Пары'
+      end
+      object Teachers: TMenuItem
+        Tag = 6
+        Caption = 'Преподаватели'
+      end
+      object TeachersCourses: TMenuItem
+        Tag = 7
+        Caption = 'Преподаватели и courses'
+      end
+      object Weekdays: TMenuItem
+        Tag = 8
+        Caption = 'Дни недели'
+      end
+    end
+  end
+end

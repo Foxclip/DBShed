@@ -1,0 +1,34 @@
+object ConnectionForm: TConnectionForm
+  Left = 348
+  Height = 63
+  Top = 227
+  Width = 196
+  Caption = 'ConnectionForm'
+  LCLVersion = '1.2.6.0'
+  object IBConnection1: TIBConnection
+    Connected = True
+    LoginPrompt = False
+    DatabaseName = '/home/suburban/Lazarus/DBSched/SCHED.FDB'
+    KeepConnection = False
+    Password = 'masterkey'
+    Transaction = SQLTransaction1
+    UserName = 'SYSDBA'
+    LogEvents = []
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = False
+    Database = IBConnection1
+    left = 32
+  end
+  object SQLQuery1: TSQLQuery
+    FieldDefs = <>
+    Database = IBConnection1
+    Transaction = SQLTransaction1
+    Params = <>
+    left = 64
+  end
+  object DataSource1: TDataSource
+    DataSet = SQLQuery1
+    left = 96
+  end
+end

@@ -1,0 +1,25 @@
+object ReferenceForm: TReferenceForm
+  Left = 316
+  Height = 391
+  Top = 125
+  Width = 530
+  Caption = 'ReferenceForm'
+  ClientHeight = 391
+  ClientWidth = 530
+  LCLVersion = '1.2.6.0'
+  object DBGrid1: TDBGrid
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 0
+    Height = 304
+    Top = 0
+    Width = 530
+    Anchors = [akTop, akLeft, akRight]
+    Color = clWindow
+    Columns = <>
+    DataSource = ConnectionForm.DataSource1
+    TabOrder = 0
+  end
+end
