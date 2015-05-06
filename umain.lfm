@@ -9,41 +9,56 @@ object MainForm: TMainForm
   object MainMenu: TMainMenu
     object ReferenceItem: TMenuItem
       Caption = 'Справочник'
-      OnClick = ReferenceItemClick
       object Classrooms: TMenuItem
         Caption = 'Аудитории'
+        OnClick = ReferenceMenuItemClick
       end
       object Courses: TMenuItem
         Tag = 1
         Caption = 'Courses'
+        OnClick = ReferenceMenuItemClick
       end
       object Groups: TMenuItem
         Tag = 2
         Caption = 'Группы'
+        OnClick = ReferenceMenuItemClick
       end
       object GroupsCourses: TMenuItem
         Tag = 3
         Caption = 'Группы и courses'
+        OnClick = ReferenceMenuItemClick
       end
       object Lessons: TMenuItem
         Tag = 4
         Caption = 'Lessons'
+        OnClick = ReferenceMenuItemClick
       end
       object Pairs: TMenuItem
         Tag = 5
         Caption = 'Пары'
+        OnClick = ReferenceMenuItemClick
       end
       object Teachers: TMenuItem
         Tag = 6
         Caption = 'Преподаватели'
+        OnClick = ReferenceMenuItemClick
       end
       object TeachersCourses: TMenuItem
         Tag = 7
         Caption = 'Преподаватели и courses'
+        OnClick = ReferenceMenuItemClick
       end
       object Weekdays: TMenuItem
         Tag = 8
         Caption = 'Дни недели'
+        OnClick = ReferenceMenuItemClick
+      end
+    end
+    object WindowMenu: TMenuItem
+      Caption = 'Окна'
+      object ShowAll: TMenuItem
+        Caption = 'Показать все'
+        OnClick = ShowAllClick
       end
     end
   end

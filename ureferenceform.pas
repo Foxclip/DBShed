@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
-  DBGrids, UConnectionForm;
+  DBGrids, UConnectionForm, UDebugForm;
 
 type
 
@@ -43,6 +43,8 @@ begin
     SQLQuery1.Open;
   end;
   ReferenceFormArray[High(ReferenceFormArray)] := newForm;
+  newForm.Show;
+  newForm.BringToFront;
 end;
 
 end.

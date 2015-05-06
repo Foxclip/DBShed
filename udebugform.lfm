@@ -1,0 +1,18 @@
+object DebugForm: TDebugForm
+  Left = 920
+  Height = 240
+  Top = 56
+  Width = 320
+  Caption = 'DebugForm'
+  ClientHeight = 240
+  ClientWidth = 320
+  LCLVersion = '1.2.6.0'
+  object Memo1: TMemo
+    Left = 0
+    Height = 240
+    Top = 0
+    Width = 320
+    Align = alClient
+    TabOrder = 0
+  end
+end

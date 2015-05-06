@@ -1,7 +1,7 @@
 object ReferenceForm: TReferenceForm
-  Left = 316
+  Left = 686
   Height = 391
-  Top = 125
+  Top = 319
   Width = 530
   Caption = 'ReferenceForm'
   ClientHeight = 391
