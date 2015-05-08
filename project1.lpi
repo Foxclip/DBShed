@@ -72,6 +72,7 @@
         <Filename Value="udebugform.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DebugForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UDebugForm"/>
       </Unit4>

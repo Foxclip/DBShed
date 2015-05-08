@@ -13,9 +13,7 @@ type
   { TConnectionForm }
 
   TConnectionForm = class(TForm)
-    DataSource1: TDataSource;
     IBConnection1: TIBConnection;
-    SQLQuery1: TSQLQuery;
     SQLTransaction1: TSQLTransaction;
   end;
 

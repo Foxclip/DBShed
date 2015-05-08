@@ -20,15 +20,4 @@ object ConnectionForm: TConnectionForm
     Database = IBConnection1
     left = 32
   end
-  object SQLQuery1: TSQLQuery
-    FieldDefs = <>
-    Database = IBConnection1
-    Transaction = SQLTransaction1
-    Params = <>
-    left = 64
-  end
-  object DataSource1: TDataSource
-    DataSet = SQLQuery1
-    left = 96
-  end
 end
