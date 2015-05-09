@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
-  Menus, UConnectionForm, ureferenceform, UDebugForm;
+  Menus, UReferenceForm, UDebugForm;
 
 type
 
@@ -28,10 +28,19 @@ type
     ReferenceItem: TMenuItem;
     procedure ReferenceMenuItemClick(Sender: TObject);
     procedure ShowAllClick(Sender: TObject);
+    function FindFormByTag(itemTag: integer): integer;
   end;
+
+const
+  newFormFirstOffset = 100;
+  newFormOffset = 50;
+  tableNames: array [0..8] of string =
+    ('classrooms', 'courses', 'groups', 'groups_courses', 'lessons',
+    'pairs', 'teachers', 'teachers_courses', 'weekdays');
 
 var
   MainForm: TMainForm;
+  ReferenceFormArray: array of TReferenceForm;
 
 implementation
 
@@ -39,37 +48,28 @@ implementation
 
 procedure TMainForm.ReferenceMenuItemClick(Sender: TObject);
 var
-  i: integer;
-  tableName: string;
-  formisAlreadyOpened: boolean = False;
+  newForm: TReferenceForm;
+  formIndex: integer;
 begin
-
-  case (Sender as TMenuItem).Tag of
-    0: tableName := 'classrooms';
-    1: tableName := 'courses';
-    2: tableName := 'groups';
-    3: tableName := 'groups_courses';
-    4: tableName := 'lessons';
-    5: tableName := 'pairs';
-    6: tableName := 'teachers';
-    7: tableName := 'teachers_courses';
-    8: tableName := 'weekdays';
-  end;
-
-  for i := 0 to High(ReferenceFormArray) do
+  formIndex := FindFormByTag((Sender as TMenuItem).Tag);
+  if formIndex = -1 then
   begin
-    if ReferenceFormArray[i].tableName = tableName then
-    begin
-      formisAlreadyOpened := True;
-      ReferenceFormArray[i].Show;
-      ReferenceFormArray[i].BringToFront;
-      break;
-    end;
+    SetLength(ReferenceFormArray, Length(ReferenceFormArray) + 1);
+    newForm := TReferenceForm.Create(tableNames[(Sender as TMenuItem).Tag]);
+    ReferenceFormArray[High(ReferenceFormArray)] := newForm;
+    newForm.SetBounds(Left + newFormFirstOffset + newFormOffset *
+      (Length(ReferenceFormArray) - 1),
+      top + newFormFirstOffset + newFormOffset * (Length(ReferenceFormArray) - 1),
+      newForm.Width, newForm.Height);
+    newForm.Caption := (Sender as TMenuItem).Caption;
+    newForm.Show;
+    newForm.BringToFront;
+  end
+  else
+  begin
+    ReferenceFormArray[formIndex].Show;
+    ReferenceFormArray[formIndex].BringToFront;
   end;
-
-  if not formisAlreadyOpened then
-    createReferenceForm(tableName);
-
 end;
 
 procedure TMainForm.ShowAllClick(Sender: TObject);
@@ -78,6 +78,19 @@ var
 begin
   for i := 0 to High(ReferenceFormArray) do
     ReferenceFormArray[i].BringToFront;
+end;
+
+function TMainForm.FindFormByTag(itemTag: integer): integer;
+var
+  i: integer;
+begin
+  Result := -1;
+  for i := 0 to High(ReferenceFormArray) do
+    if ReferenceFormArray[i].tableName = tableNames[itemTag] then
+    begin
+      Result := i;
+      break;
+    end;
 end;
 
 end.

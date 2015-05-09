@@ -1,8 +1,8 @@
 object MainForm: TMainForm
-  Left = 359
-  Height = 351
-  Top = 286
-  Width = 599
+  Left = 276
+  Height = 330
+  Top = 211
+  Width = 539
   Caption = 'DBShed'
   Menu = MainMenu
   LCLVersion = '1.2.6.0'

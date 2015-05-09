@@ -1,4 +1,4 @@
-unit ureferenceform;
+unit UReferenceForm;
 
 {$mode objfpc}{$H+}
 
@@ -6,15 +6,9 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
-  DBGrids, UConnectionForm, UDebugForm, sqldb, DB;
+  DBGrids, UDebugForm, sqldb, DB;
 
 type
-
-  FormType = (classrooms, courses, groups, groupscourses, lessons, pairs,
-    teachers, teacherscourses, weekdays);
-
-  { TReferenceForm }
-
   TReferenceForm = class(TForm)
     DataSource1: TDataSource;
     DBGrid1: TDBGrid;
@@ -22,30 +16,20 @@ type
   private
   public
     tableName: string;
+    constructor Create(ATableName: string);
   end;
-
-var
-  ReferenceFormArray: array of TReferenceForm;
-
-procedure createReferenceForm(tableName: string);
 
 implementation
 
 {$R *.lfm}
 
-procedure createReferenceForm(tableName: string);
-var
-  newForm: TReferenceForm;
+constructor TReferenceForm.Create(ATableName: string);
 begin
-  SetLength(ReferenceFormArray, Length(ReferenceFormArray) + 1);
-  newForm := TReferenceForm.Create(nil);
-  newForm.tableName := tableName;
-  newForm.SQLQuery1.Close;
-  newForm.SQLQuery1.SQL.Text := 'select * from ' + tableName + ';';
-  newForm.SQLQuery1.Open;
-  ReferenceFormArray[High(ReferenceFormArray)] := newForm;
-  newForm.Show;
-  newForm.BringToFront;
+  inherited Create(nil);
+  tableName := ATableName;
+  SQLQuery1.Close;
+  SQLQuery1.SQL.Text := 'select * from ' + tableName + ';';
+  SQLQuery1.Open;
 end;
 
 end.
