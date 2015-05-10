@@ -15,7 +15,7 @@ object MainForm: TMainForm
       end
       object Courses: TMenuItem
         Tag = 1
-        Caption = 'Courses'
+        Caption = 'Предметы'
         OnClick = ReferenceMenuItemClick
       end
       object Groups: TMenuItem
@@ -25,12 +25,12 @@ object MainForm: TMainForm
       end
       object GroupsCourses: TMenuItem
         Tag = 3
-        Caption = 'Группы и courses'
+        Caption = 'Группы и предметы'
         OnClick = ReferenceMenuItemClick
       end
       object Lessons: TMenuItem
         Tag = 4
-        Caption = 'Lessons'
+        Caption = 'Расписание'
         OnClick = ReferenceMenuItemClick
       end
       object Pairs: TMenuItem
@@ -45,7 +45,7 @@ object MainForm: TMainForm
       end
       object TeachersCourses: TMenuItem
         Tag = 7
-        Caption = 'Преподаватели и courses'
+        Caption = 'Преподаватели и предметы'
         OnClick = ReferenceMenuItemClick
       end
       object Weekdays: TMenuItem

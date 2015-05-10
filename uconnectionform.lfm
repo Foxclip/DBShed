@@ -13,6 +13,7 @@ object ConnectionForm: TConnectionForm
     Password = 'masterkey'
     Transaction = SQLTransaction1
     UserName = 'SYSDBA'
+    CharSet = 'utf8'
     LogEvents = []
   end
   object SQLTransaction1: TSQLTransaction

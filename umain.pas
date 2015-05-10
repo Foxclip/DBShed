@@ -34,7 +34,7 @@ type
 const
   newFormFirstOffset = 100;
   newFormOffset = 50;
-  tableNames: array [0..8] of string =
+  tableNamesArray: array [0..8] of string =
     ('classrooms', 'courses', 'groups', 'groups_courses', 'lessons',
     'pairs', 'teachers', 'teachers_courses', 'weekdays');
 
@@ -55,15 +55,18 @@ begin
   if formIndex = -1 then
   begin
     SetLength(ReferenceFormArray, Length(ReferenceFormArray) + 1);
-    newForm := TReferenceForm.Create(tableNames[(Sender as TMenuItem).Tag]);
+    newForm := TReferenceForm.Create(tableNamesArray[(Sender as TMenuItem).Tag]);
     ReferenceFormArray[High(ReferenceFormArray)] := newForm;
-    newForm.SetBounds(Left + newFormFirstOffset + newFormOffset *
-      (Length(ReferenceFormArray) - 1),
-      top + newFormFirstOffset + newFormOffset * (Length(ReferenceFormArray) - 1),
+    newForm.SetBounds(
+      Left + newFormFirstOffset + newFormOffset * (Length(ReferenceFormArray) - 1),
+      Top + newFormFirstOffset + newFormOffset * (Length(ReferenceFormArray) - 1),
       newForm.Width, newForm.Height);
-    newForm.Caption := (Sender as TMenuItem).Caption;
-    newForm.Show;
-    newForm.BringToFront;
+    with newForm do
+    begin
+      Caption := (Sender as TMenuItem).Caption;
+      Show;
+      BringToFront;
+    end;
   end
   else
   begin
@@ -86,7 +89,7 @@ var
 begin
   Result := -1;
   for i := 0 to High(ReferenceFormArray) do
-    if ReferenceFormArray[i].tableName = tableNames[itemTag] then
+    if ReferenceFormArray[i].tableName = tableNamesArray[itemTag] then
     begin
       Result := i;
       break;
