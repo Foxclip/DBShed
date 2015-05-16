@@ -14,33 +14,17 @@ type
 
   TMainForm = class(TForm)
     MainMenu: TMainMenu;
-    Classrooms: TMenuItem;
-    Courses: TMenuItem;
-    Groups: TMenuItem;
-    GroupsCourses: TMenuItem;
-    Lessons: TMenuItem;
     ShowAll: TMenuItem;
     WindowMenu: TMenuItem;
-    Pairs: TMenuItem;
-    Teachers: TMenuItem;
-    TeachersCourses: TMenuItem;
-    Weekdays: TMenuItem;
     ReferenceItem: TMenuItem;
+    procedure CreateMenuItems;
+    procedure FormCreate(Sender: TObject);
     procedure ReferenceMenuItemClick(Sender: TObject);
     procedure ShowAllClick(Sender: TObject);
-    function FindFormByTag(itemTag: integer): integer;
   end;
-
-const
-  newFormFirstOffset = 100;
-  newFormOffset = 50;
-  tableNamesArray: array [0..8] of string =
-    ('classrooms', 'courses', 'groups', 'groups_courses', 'lessons',
-    'pairs', 'teachers', 'teachers_courses', 'weekdays');
 
 var
   MainForm: TMainForm;
-  ReferenceFormArray: array of TReferenceForm;
 
 implementation
 
@@ -48,31 +32,38 @@ implementation
 
 procedure TMainForm.ReferenceMenuItemClick(Sender: TObject);
 var
-  newForm: TReferenceForm;
-  formIndex: integer;
+  RefForm: TReferenceForm;
 begin
-  formIndex := FindFormByTag((Sender as TMenuItem).Tag);
-  if formIndex = -1 then
+  RefForm := ReferenceFormArray[(Sender as TMenuItem).Tag];
+  with RefForm do
   begin
-    SetLength(ReferenceFormArray, Length(ReferenceFormArray) + 1);
-    newForm := TReferenceForm.Create(tableNamesArray[(Sender as TMenuItem).Tag]);
-    ReferenceFormArray[High(ReferenceFormArray)] := newForm;
-    newForm.SetBounds(
-      Left + newFormFirstOffset + newFormOffset * (Length(ReferenceFormArray) - 1),
-      Top + newFormFirstOffset + newFormOffset * (Length(ReferenceFormArray) - 1),
-      newForm.Width, newForm.Height);
-    with newForm do
-    begin
-      Caption := (Sender as TMenuItem).Caption;
-      Show;
-      BringToFront;
-    end;
-  end
-  else
-  begin
-    ReferenceFormArray[formIndex].Show;
-    ReferenceFormArray[formIndex].BringToFront;
+    Show;
+    BringToFront;
+    SQLQuery1.Open;
   end;
+end;
+
+procedure TMainForm.CreateMenuItems;
+var
+  i: integer;
+  newMenuItem: TMenuItem;
+begin
+  for i := 0 to High(ReferenceFormArray) do
+  begin
+    newMenuItem := TMenuItem.Create(nil);
+    newMenuItem.OnClick := @ReferenceMenuItemClick;
+    with newMenuItem do
+    begin
+      Caption := ReferenceFormArray[i].Caption;
+      Tag := i;
+    end;
+    ReferenceItem.Add(newMenuItem);
+  end;
+end;
+
+procedure TMainForm.FormCreate(Sender: TObject);
+begin
+  CreateMenuItems;
 end;
 
 procedure TMainForm.ShowAllClick(Sender: TObject);
@@ -81,19 +72,6 @@ var
 begin
   for i := 0 to High(ReferenceFormArray) do
     ReferenceFormArray[i].BringToFront;
-end;
-
-function TMainForm.FindFormByTag(itemTag: integer): integer;
-var
-  i: integer;
-begin
-  Result := -1;
-  for i := 0 to High(ReferenceFormArray) do
-    if ReferenceFormArray[i].tableName = tableNamesArray[itemTag] then
-    begin
-      Result := i;
-      break;
-    end;
 end;
 
 end.
