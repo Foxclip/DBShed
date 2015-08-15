@@ -1,58 +1,15 @@
 object MainForm: TMainForm
-  Left = 276
+  Left = 81
   Height = 330
-  Top = 211
+  Top = 123
   Width = 539
   Caption = 'DBShed'
   Menu = MainMenu
+  OnCreate = FormCreate
   LCLVersion = '1.2.6.0'
   object MainMenu: TMainMenu
     object ReferenceItem: TMenuItem
       Caption = 'Справочник'
-      object Classrooms: TMenuItem
-        Caption = 'Аудитории'
-        OnClick = ReferenceMenuItemClick
-      end
-      object Courses: TMenuItem
-        Tag = 1
-        Caption = 'Предметы'
-        OnClick = ReferenceMenuItemClick
-      end
-      object Groups: TMenuItem
-        Tag = 2
-        Caption = 'Группы'
-        OnClick = ReferenceMenuItemClick
-      end
-      object GroupsCourses: TMenuItem
-        Tag = 3
-        Caption = 'Группы и предметы'
-        OnClick = ReferenceMenuItemClick
-      end
-      object Lessons: TMenuItem
-        Tag = 4
-        Caption = 'Расписание'
-        OnClick = ReferenceMenuItemClick
-      end
-      object Pairs: TMenuItem
-        Tag = 5
-        Caption = 'Пары'
-        OnClick = ReferenceMenuItemClick
-      end
-      object Teachers: TMenuItem
-        Tag = 6
-        Caption = 'Преподаватели'
-        OnClick = ReferenceMenuItemClick
-      end
-      object TeachersCourses: TMenuItem
-        Tag = 7
-        Caption = 'Преподаватели и предметы'
-        OnClick = ReferenceMenuItemClick
-      end
-      object Weekdays: TMenuItem
-        Tag = 8
-        Caption = 'Дни недели'
-        OnClick = ReferenceMenuItemClick
-      end
     end
     object WindowMenu: TMenuItem
       Caption = 'Окна'
